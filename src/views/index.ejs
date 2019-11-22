@@ -1,0 +1,61 @@
+<% include partials/_header %>
+   
+ 
+
+    <div class="container">
+      <div class="row">
+          <!-- FORMULARIO -->
+          <div class="col-md-4">
+              <div class="card">
+                  <div class="card-body">
+                      <form action="/add" method="POST">
+                          <div class="form-group">
+                                <label for="">Ingrese una nueva tarea</label>
+                            <input type="text" name="titulo" placeholder="Insertar un titulo" class="form-control">
+                          </div>
+                          <div class="form-group">
+                             <textarea name="descripcion"  cols="80"  placeholder="Insertar una descripcion" class="form-control"></textarea>
+                              </div>
+                          <button type="submit" class="btn btn-primary btn-block">
+                             Agregar
+                          </button>
+                      </form>
+                  </div>
+              </div>
+          </div>
+<!-- Lista -->
+    <div class="col-md-8">
+        <table class="table table-bordered table hover">
+            <thead>
+             <tr>
+                 <th>Nº</th>
+                 <th>Titulo</th>
+                 <th>Descripcion</th>
+                 <th>Operacion</th>
+             </tr>
+            </thead>
+            <tbody>
+                    <% for ( var i=0; i < tareas.length; i++){ %>
+                        <tr>
+                           <td> <%= i+1 %> </td>
+                           <td> <%= tareas[i].titulo %> </td>
+                           <td> <%= tareas[i].descripcion %> </td>
+                           <td>  
+                               <a href="/hecho/<%= tareas[i]._id %>" 
+                                class="btn <%= tareas[i].status ? 'btn-success' : 'btn-dark' %>" >Hecho</a>
+
+                               <a href="/delete/<%= tareas[i]._id %>" class="btn btn-danger"> Eliminar</a>
+                               <a href="/editar/<%= tareas[i]._id %>" class="btn btn-info">Editar</a>
+                           </td>
+                        </tr>
+                    <!-- <%= tareas[i] %> -->
+                    <% } %> 
+                    <%  %>
+            </tbody>
+        </table>
+
+    </div>
+      </div>
+
+    </div>
+<% include partials/_footer %>
